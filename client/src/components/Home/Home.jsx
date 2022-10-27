@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getRecipes, filterCreated, orderByName, orderByScore } from '../../actions';
+import { getRecipes, filterCreated, orderByName, orderByScore, filterByDiet } from '../../actions';
 import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
@@ -11,6 +11,7 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
+  console.log(allRecipes);
   // eslint-disable-next-line
   const [orderName, setOrderName] = useState("");
   // eslint-disable-next-line
@@ -34,25 +35,30 @@ export default function Home() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes());
-  }
+  };
 
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-  }
+  };
 
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
     setOrderName(e.target.value);
-  }
+  };
 
   function handleSelectByScore(e) {
     e.preventDefault();
     dispatch(orderByScore(e.target.value));
     setCurrentPage(1);
     setScore(e.target.value);
+  };
+
+  function handleSelectByDiet(e){
+    e.preventDefault();
+    dispatch(filterByDiet(e.target.value));
   }
 
   return (
@@ -64,7 +70,7 @@ export default function Home() {
       <button onClick={(e) => handleClick(e)}>Show all Recipes</button>
       <div>
         <span>Filter by Type of diet</span>
-        <select>
+        <select onChange={(e) => handleSelectByDiet(e)}>
           <option value="all">All</option>
           <option value="vegan">Vegan</option>
           <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>

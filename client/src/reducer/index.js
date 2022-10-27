@@ -6,7 +6,8 @@ import {
   GET_DIETS,
   POST_RECIPE,
   ORDER_BY_SCORE,
-  GET_DETAIL
+  GET_DETAIL,
+  FILTER_BY_DIET
 } from '../actions/index.js';
 
 const initialState = {
@@ -86,6 +87,28 @@ export default function rootReducer(state=initialState, action){
       return {
         ...state,
         detail: action.payload,
+      }
+    case FILTER_BY_DIET:
+      let totalRecipes = state.allRecipes;
+      const recipesApi = totalRecipes.filter((r) => !r.createdDb);
+      const filteredRecipesApi = recipesApi.filter((r) =>
+        r.diets.includes(action.payload)
+      );
+      const recipeDb = totalRecipes.filter((r) => r.createdDb);
+      const filteredRecipeDb = recipeDb.filter(
+        (r) => r.diets.name === action.payload
+      );
+      const filtered = filteredRecipeDb.concat(filteredRecipesApi);
+      const vegetarianApi = totalRecipes.filter((r) => r.vegetarian === true);
+      const vegetarianDb = recipeDb.filter(
+        (r) => r.diets.name === "vegetarian"
+      );
+      const vegetarian = vegetarianDb.concat(vegetarianApi);
+      const ternario = action.payload === "vegetarian" ? vegetarian : filtered;
+  
+      return {
+        ...state,
+        recipes: action.payload === "all" ? totalRecipes : ternario
       };
     default:
       return { ...state };
