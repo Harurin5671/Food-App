@@ -14,12 +14,42 @@ router.get("/recipes", async (req, res) => {
   }
 });
 
+// router.get("/recipes/:id", async (req, res) => {
+//   const {id} = req.params;
+//   const allRecipe = await getAllRecipes();
+//   if(id){
+//     let recipeId = await allRecipe.filter(r => r.id == id);
+//     recipeId.length
+//       ? res.status(200).json(recipeId)
+//       : res.status(404).send("Recipe not found");
+//   }
+// });
+
 router.get("/recipes/:id", async (req, res) => {
-  let {id} = req.params;
-  let allRecipe = await getAllRecipes();
-  if(id){
-    let recipeId = await allRecipe.filter(r => r.id == id);
-    recipeId.length ? res.status(200).json(recipeId) : res.status(404).send("This character was not found");
+  const { id } = req.params;
+  const allRecipes = await getAllRecipes();
+  // console.log(allRecipes.map(e => e.id===parseInt(id)));
+  let validate = id.includes("-"); // si tiene el guion es porque se encuentra en la base de datos
+
+  if (validate) {
+    try {
+      let dbId = await Recipe.findByPk(id, { include: Diets }); // entonce la busco directo de la base de datos
+      res.status(200).json([dbId]);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    try {
+      if (id) {
+        let recipeId = await allRecipes.filter((el) => el.id === parseInt(id));
+        // console.log(recipeId);
+        recipeId.length
+          ? res.status(200).send(recipeId)
+          : res.status(400).send("Not found");
+      }
+    } catch (err) {
+      res.json({ message: err });
+    }
   }
 });
 
