@@ -8,6 +8,7 @@ export const GET_DIETS = "GET_DIETS";
 export const POST_RECIPE = "POST_RECIPE";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
 export const GET_DETAIL = "GET_DETAIL";
+export const FILTER_BY_DIET = "FILTER_BY_DIET";
 
 export function getRecipes(){
   return async function(dispatch){
@@ -81,5 +82,12 @@ export function getDetail(id){
       type: GET_DETAIL,
       payload: json.data,
     });
+  };
+};
+
+export function filterByDiet(payload) {
+  return {
+    type: FILTER_BY_DIET,
+    payload,
   };
 };

@@ -66,6 +66,17 @@ export default function Home() {
         <span>Filter by Type of diet</span>
         <select>
           <option value="all">All</option>
+          <option value="vegan">Vegan</option>
+          <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
+          <option value="dairy free">Dairy Free</option>
+          <option value="gluten free">Gluten Free</option>
+          <option value="paleolithic">Paleolithic</option>
+          <option value="primal">Primal</option>
+          <option value="whole 30">Whole 30</option>
+          <option value="pescatarian">Pescatarian 30</option>
+          <option value="ketogenic">Ketogenic</option>
+          <option value="fodmap friendly">Fodmap Friendly</option>
+          <option value="Vegetarian">Vegetarian</option>
         </select>
         <span>Order by Recipe Name</span>
         <select onChange={(e) => handleSort(e)}>
