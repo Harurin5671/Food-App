@@ -1,5 +1,5 @@
 import React from "react";
-import { getDetail, getRecipes } from "../../actions";
+import { getDetail } from "../../actions";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
