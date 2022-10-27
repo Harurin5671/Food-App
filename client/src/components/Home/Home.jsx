@@ -13,6 +13,7 @@ export default function Home() {
   const allRecipes = useSelector((state) => state.recipes);
   // eslint-disable-next-line
   const [orderName, setOrderName] = useState("");
+  // eslint-disable-next-line
   const [score, setScore] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(9);
@@ -33,19 +34,19 @@ export default function Home() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes());
-  };
+  }
 
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-  };
+  }
 
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
     setOrderName(e.target.value);
-  };
+  }
 
   function handleSelectByScore(e) {
     e.preventDefault();

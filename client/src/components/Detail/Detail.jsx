@@ -24,17 +24,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Detail(props) {
-  console.log(props);
   let {id} = useParams();
-  console.log(id);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getDetail(id))
+    dispatch(getDetail(id));
+    // eslint-disable-next-line
   }, []);
   const details = useSelector(state => state.detail);
-  console.log(details);
   return (
     <div>
+      <Link to="/home">
+      <button>Back to Home</button>
+      </Link>
       {details.length > 0 ? (
         <div>
           <h1>Name of Recipe: {details[0].title}</h1>
