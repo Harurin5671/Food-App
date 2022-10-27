@@ -3,6 +3,28 @@ import { Link } from 'react-router-dom';
 import { postRecipe, getDiets } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 
+function validate(input) {
+  let errors = {};
+  input.title
+    ? (errors.title = "")
+    : (errors.title = "You must name the recipe");
+  input.summary
+    ? (errors.summary = "")
+    : (errors.summary = "You must provide a summary");
+  input.diets.length < 1
+    ? (errors.diets = "Choose at least one diet")
+    : (errors.diets = "");
+  if (!input.image.includes("https://") && !input.image.includes("http://")) {
+    if(input.image === ""){
+      errors.image = ""
+    }
+    errors.image = "This isn't a valid image address";
+  } else {
+    errors.image = "";
+  }
+  return errors;
+}
+
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -15,6 +37,7 @@ export default function CreateRecipe() {
     image: "",
     diets: []
   });
+  const [errors, setErrors] = useState({});
 
   function handleChange(e){
     setInput({
@@ -29,6 +52,11 @@ export default function CreateRecipe() {
       ...input,
       diets: [...input.diets, e.target.value]
     });
+    setErrors(validate({
+      ...input,
+      [e.target.name]: e.target.value
+    }));
+    console.log(input);
   };
 
   function handleSubmit(e){
@@ -46,6 +74,14 @@ export default function CreateRecipe() {
       diets: [],
     });
   };
+
+  function handleDelete(e, d) {
+    e.preventDefault();
+    setInput({
+      ...input,
+      diets: input.diets.filter((diet) => diet !== d),
+    });
+  }
 
   useEffect(() => {
     dispatch(getDiets());
@@ -68,6 +104,7 @@ export default function CreateRecipe() {
             name="title"
             value={input.title}
           />
+          {errors.title && (<p>{}errors.title</p>)}
         </div>
         <div>
           <label>Summary:</label>
@@ -78,6 +115,7 @@ export default function CreateRecipe() {
             name="summary"
             value={input.summary}
           />
+          {errors.summary && <p>{errors.summary}</p>}
         </div>
         <div>
           <label>Health Level:</label>
@@ -108,6 +146,7 @@ export default function CreateRecipe() {
             name="image"
             value={input.image}
           />
+          {errors.image && <p>{errors.image}</p>}
         </div>
         <div>
           <span>Type of Diet:</span>
@@ -119,9 +158,13 @@ export default function CreateRecipe() {
                 </option>
               ))}
           </select>
-          <ul>
-            <li>{input.diets.map((d) => d + ", ")}</li>
-          </ul>
+          {input.diets.map((d, i) => (
+              <ul key={i}>
+                <li>{d}</li>
+                <button onClick={(e) => handleDelete(e, d)}>x</button>
+              </ul>
+            ))}
+            {errors.diets && <p>{errors.diets}</p>}
           <button type="submit">Create a Recipe</button>
         </div>
       </form>

@@ -11,7 +11,6 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-  console.log(allRecipes);
   // eslint-disable-next-line
   const [orderName, setOrderName] = useState("");
   // eslint-disable-next-line
