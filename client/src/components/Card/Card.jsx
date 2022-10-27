@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Card({title, image, diets}) {
+export default function Card({title, image, diets, id}) {
   return (
     <div>
-      <h3>{title}</h3>
+      <Link to={`/recipes/${id}`}>
+        <h3>{title}</h3>
+      </Link>
       <h5>{diets}</h5>
       <img
         src={image}

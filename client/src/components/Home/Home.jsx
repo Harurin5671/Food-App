@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getRecipes, filterCreated, orderByName } from '../../actions';
+import { getRecipes, filterCreated, orderByName, orderByScore } from '../../actions';
 import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
@@ -12,7 +12,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   // eslint-disable-next-line
-  const [order, setOrder] = useState("");
+  const [orderName, setOrderName] = useState("");
+  const [score, setScore] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -32,18 +33,25 @@ export default function Home() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes());
-  }
+  };
 
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-  }
+  };
 
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value);
+    setOrderName(e.target.value);
+  };
+
+  function handleSelectByScore(e) {
+    e.preventDefault();
+    dispatch(orderByScore(e.target.value));
+    setCurrentPage(1);
+    setScore(e.target.value);
   }
 
   return (
@@ -65,7 +73,7 @@ export default function Home() {
           <option value="z-a">Z-A</option>
         </select>
         <span>Order by Score</span>
-        <select>
+        <select onChange={(e) => handleSelectByScore(e)}>
           <option value="all">All</option>
           <option value="asc">Highest Score</option>
           <option value="desc">Lowest Score</option>
@@ -94,6 +102,7 @@ export default function Home() {
                       : r.diets.map((d) => <p key={d}>{d}</p>)
                   }
                   image={r.image ? r.image : img}
+                  id={r.id}
                 />
               </div>
             );

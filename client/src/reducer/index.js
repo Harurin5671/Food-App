@@ -3,13 +3,17 @@ import {
   FILTER_CREATED,
   ORDER_BY_NAME,
   GET_RECIPE_NAME,
-  GET_DIETS
+  GET_DIETS,
+  POST_RECIPE,
+  ORDER_BY_SCORE,
+  GET_DETAIL
 } from '../actions/index.js';
 
 const initialState = {
   recipes: [],
   allRecipes: [],
-  diets: []
+  diets: [],
+  detail: []
 };
 
 export default function rootReducer(state=initialState, action){
@@ -65,6 +69,24 @@ export default function rootReducer(state=initialState, action){
         ...state,
         diets: action.payload
       }
+    case POST_RECIPE:
+      return{
+        ...state
+      }
+    case ORDER_BY_SCORE:
+      let orderRecipes =
+        action.payload === "desc"
+          ? state.recipes.sort((a, b) => a.healthScore - b.healthScore)
+          : state.recipes.sort((a, b) => b.healthScore - a.healthScore);
+      return {
+        ...state,
+        recipes: action.payload === "all" ? state.recipes : orderRecipes
+      }
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
+      };
     default:
       return { ...state };
   };
