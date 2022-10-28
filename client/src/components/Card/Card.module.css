@@ -1,0 +1,10 @@
+.card_container {
+  display: inline-block;
+  border: 1px solid peru;
+  box-shadow: 5px black;
+  width: 350px;
+}
+
+.title {
+  text-decoration: none;
+}

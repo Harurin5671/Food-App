@@ -7,6 +7,7 @@ import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import img from '../../image/fondo-comida-saludable-dibujado-mano_23-2148149083.jpg';
 import SearchBar from '../SearchBar/SearchBar';
+import style from './Home.module.css';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -61,15 +62,18 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <Link to="/create">
-        <button>Crear Personaje</button>
-      </Link>
-      <h1>THE WIKIPEDIA OF RECIPES...</h1>
+    <div className={style.container}>
+      <h1 className={style.h1}>THE WIKIPEDIA OF RECIPES...</h1>
+      <div className={style.nav}>
+        <Link className={style.link} to="/create">
+          <button className={style.btn_create}><span>Create Recipe</span></button>
+        </Link>
+      </div>
+      <SearchBar />
       <button onClick={(e) => handleClick(e)}>Show all Recipes</button>
       <div>
         <span>Filter by Type of diet</span>
-        <select onChange={(e) => handleSelectByDiet(e)}>
+        <select className={style.select_diet} onChange={(e) => handleSelectByDiet(e)}>
           <option value="all">All</option>
           <option value="vegan">Vegan</option>
           <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
@@ -101,12 +105,14 @@ export default function Home() {
           <option value="create">Create</option>
           <option value="api">Api</option>
         </select>
-        <Pagination
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          pagination={pagination}
-        />
-        <SearchBar />
+        <div className={style.pageContainer}>
+          <Pagination
+            recipesPerPage={recipesPerPage}
+            allRecipes={allRecipes.length}
+            pagination={pagination}
+          />
+        </div>
+        <div className={style.card_container}>
         {currentRecipes &&
           currentRecipes.map((r) => {
             return (
@@ -124,6 +130,7 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
       </div>
     </div>
   );

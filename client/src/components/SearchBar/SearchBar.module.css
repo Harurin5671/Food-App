@@ -1,0 +1,11 @@
+.container{
+  border: 2px solid yellow;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn{
+  padding: 5px;
+}

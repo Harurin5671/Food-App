@@ -1,0 +1,39 @@
+.container{
+  border: 2px solid brown;
+}
+
+.nav{
+  /* border: 2px solid blue; */
+  height: 30px;
+}
+
+.link{
+  /* border: 2px solid blue; */
+  display: flex;
+  justify-content: flex-start;
+  width: 7%;
+}
+
+.h1{
+  border: 2px solid red;
+}
+
+.btn_create {
+  /* border: 2px solid purple; */
+  background-color: #99d98c;
+  margin: 38px 0 0 3px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.btn_create:hover{
+  background-color: #d9ed92;
+  transition: 0.8s;
+}
+
+.pageContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
