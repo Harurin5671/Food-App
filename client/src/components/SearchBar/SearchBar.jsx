@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getRecipeName } from '../../actions';
-import style from './SearchBar.module.css'
+import style from './SearchBar.module.css';
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ export default function SearchBar() {
   }
 
   return (
-    <div className={ style.container}>
-      <input className={style.input} type="text" value={input} placeholder="Search..." onChange={(e) => {handleInputChange(e)}}/>
-      <button className={style.btn} type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
+    <div className={style.navContainer__navbar_searchbar}>
+      <input className={style.navContainer__navbar_searchbar_input} type="text" value={input} placeholder="Search..." onChange={(e) => {handleInputChange(e)}}/>
+      <button className={style.navContainer__navbar_searchbar_button} type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
     </div>
   );
 };

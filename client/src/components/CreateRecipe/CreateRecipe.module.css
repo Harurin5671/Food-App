@@ -1,0 +1,42 @@
+/* .container{
+  border: 1px solid black;
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert{
+  position: relative;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin: 0 40rem 1rem 40rem;
+  border-radius: 1rem;
+} */
+
+.form{
+  width: 600px;
+  /* border: 2px solid blue; */
+}
+.inicio{
+  /* border: 2px solid red; */
+  text-align: center;
+}
+.h1{
+  display: inline-block;
+}
+
+.img{
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+}
+
+.p_img{
+  position: absolute;
+  top: 4.4%;
+  margin-left: 12px;
+  cursor: pointer;
+}

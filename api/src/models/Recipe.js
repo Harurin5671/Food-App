@@ -20,12 +20,18 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.INTEGER,
+      validate: {
+        isInt: true
+      }
     },
     analyzedInstructions: {
       type: DataTypes.TEXT,
     },
     image: {
       type: DataTypes.STRING,
+      validate: {
+        isURL: true
+      }
     },
     createDb: {
       type: DataTypes.BOOLEAN,

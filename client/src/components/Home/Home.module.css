@@ -1,39 +1,18 @@
-.container{
-  border: 2px solid brown;
-}
-
-.nav{
-  /* border: 2px solid blue; */
-  height: 30px;
-}
-
-.link{
-  /* border: 2px solid blue; */
-  display: flex;
-  justify-content: flex-start;
-  width: 7%;
-}
-
-.h1{
+.navContainer{
+  box-sizing: border-box;
   border: 2px solid red;
+  text-align: center;
+  height: 100px;
+  background: #d25;
 }
 
-.btn_create {
-  /* border: 2px solid purple; */
-  background-color: #99d98c;
-  margin: 38px 0 0 3px;
-  padding: 8px;
+.navContainer__btnShow{
+  display: inline-block;
+  border-radius: 10px;
   cursor: pointer;
-  border-radius: 15px;
 }
 
-.btn_create:hover{
-  background-color: #d9ed92;
-  transition: 0.8s;
-}
-
-.pageContainer {
-  display: flex;
-  align-content: center;
-  justify-content: center;
+.navContainer__h1{
+  color: #fff;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
 }

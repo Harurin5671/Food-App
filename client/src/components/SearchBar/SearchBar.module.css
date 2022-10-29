@@ -1,11 +1,37 @@
-.container{
-  border: 2px solid yellow;
-  padding-right: 5px;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+.navContainer__navbar_searchbar{ 
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  top: 6%;
 }
 
-.btn{
-  padding: 5px;
+.navContainer__navbar_searchbar_input{
+  outline: none;
+  border: none;
+  background: rgb(225, 35, 85);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 0 5px;
+}
+
+.navContainer__navbar_searchbar_input::placeholder{
+  color: #fff;
+}
+
+.navContainer__navbar_searchbar_input:hover{
+  background: #0009;
+  border-radius: 10px;
+}
+
+.navContainer__navbar_searchbar_button{
+  padding: 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.navContainer__navbar_searchbar_button:hover{
+  background: #0009;
 }

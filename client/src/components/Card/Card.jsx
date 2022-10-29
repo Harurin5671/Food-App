@@ -4,14 +4,14 @@ import style from './Card.module.css';
 
 export default function Card({title, image, diets, id}) {
   return (
-    <div className={style.card_container}>
+    <div>
       <Link to={`/recipes/${id}`}>
-        <h3 className={style.title}>{title}</h3>
+        <h3>{title}</h3>
       </Link>
       <h5>{diets}</h5>
       <img
-        src={image}
-        alt="Img recipe not found"
+      src={image}
+      alt="Img recipe not found"
       />
     </div>
   );
