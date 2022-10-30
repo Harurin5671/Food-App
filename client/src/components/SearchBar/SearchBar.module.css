@@ -1,37 +1,46 @@
-.navContainer__navbar_searchbar{ 
+.navContainer__navbar_searchbar {
   display: inline-block;
   position: absolute;
   right: 0;
   margin-right: 20px;
-  top: 6%;
+  top: 5%;
 }
 
-.navContainer__navbar_searchbar_input{
+.navContainer__navbar_searchbar_input {
   outline: none;
   border: none;
+  border-radius: 10px;
   background: rgb(225, 35, 85);
   color: rgb(255, 255, 255);
   text-align: center;
   margin: 0 5px;
+  padding: 5px;
 }
 
-.navContainer__navbar_searchbar_input::placeholder{
-  color: #fff;
+.navContainer__navbar_searchbar_input::placeholder {
+  color: #fff9;
 }
 
-.navContainer__navbar_searchbar_input:hover{
+.navContainer__navbar_searchbar_input:focus {
   background: #0009;
   border-radius: 10px;
 }
 
-.navContainer__navbar_searchbar_button{
-  padding: 8px;
+.navContainer__navbar_searchbar_button {
+  text-align: center;
+  padding: 5px;
   border-radius: 8px;
-  background: transparent;
-  border: none;
-  color: #fff;
+  background: none;
+  color: #000;
+  outline: none;
 }
 
-.navContainer__navbar_searchbar_button:hover{
+.navContainer__navbar_searchbar_button:hover {
   background: #0009;
+  outline: none;
 }
+
+/* .navContainer__navbar_searchbar_button:active {
+  outline: none;
+  border: transparent;
+} */

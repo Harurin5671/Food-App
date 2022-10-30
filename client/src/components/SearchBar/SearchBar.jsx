@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getRecipeName } from '../../actions';
-import style from './SearchBar.module.css';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getRecipeName } from "../../actions";
+import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
-  function handleInputChange(e){
+  function handleInputChange(e) {
     e.preventDefault();
     setInput(e.target.value);
   }
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     dispatch(getRecipeName(input));
     setInput("");
@@ -19,8 +19,22 @@ export default function SearchBar() {
 
   return (
     <div className={style.navContainer__navbar_searchbar}>
-      <input className={style.navContainer__navbar_searchbar_input} type="text" value={input} placeholder="Search..." onChange={(e) => {handleInputChange(e)}}/>
-      <button className={style.navContainer__navbar_searchbar_button} type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
+      <input
+        className={style.navContainer__navbar_searchbar_input}
+        type="text"
+        value={input}
+        placeholder="Write something..."
+        onChange={(e) => {
+          handleInputChange(e);
+        }}
+      />
+      <button
+        className={style.navContainer__navbar_searchbar_button}
+        type="submit"
+        onClick={(e) => handleSubmit(e)}
+      >
+        Search
+      </button>
     </div>
   );
-};
+}

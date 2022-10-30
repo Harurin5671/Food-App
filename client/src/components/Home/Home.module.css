@@ -1,18 +1,35 @@
-.navContainer{
-  box-sizing: border-box;
-  border: 2px solid red;
-  text-align: center;
-  height: 100px;
-  background: #d25;
+:root {
+  --effect: hover 1s linear infinite;
 }
 
-.navContainer__btnShow{
+.navContainer {
+  box-sizing: border-box;
+  border-bottom: 2px solid rgb(0, 0, 0, 0.3);
+  text-align: center;
+  height: 100px;
+  /* background: #d25; */
+}
+
+.navContainer__btnShow {
   display: inline-block;
   border-radius: 10px;
   cursor: pointer;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(150, 120, 70);
 }
 
-.navContainer__h1{
-  color: #fff;
-  text-shadow: 3px 3px 3px rgb(0, 0, 0);
+.navContainer__h1 {
+  color: #000;
+  text-shadow: 3px 3px 3px rgba(118, 120, 121, 0.5);
+}
+.pageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.cardsContainer {
+  margin-top: 8rem;
 }

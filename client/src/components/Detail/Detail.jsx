@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function Detail(props) {
   let { id } = useParams();
@@ -11,17 +12,17 @@ export default function Detail(props) {
   useEffect(() => {
     dispatch(getDetail(id));
     // eslint-disable-next-line
-  }, [dispatch]);
+  }, []);
   const details = useSelector((state) => state.detail);
   const recipe = details[0];
   console.log(details);
   return (
     <div>
-      <Link to="/home">
-        <button>Back to Home</button>
-      </Link>
       {details.length > 0 ? (
         <div>
+          <Link to="/home">
+            <button>Back to Home</button>
+          </Link>
           <h1>Recipe Name: {recipe.title}</h1>
           <h3>Health Score: {recipe.healthScore}</h3>
           <h3>
@@ -35,7 +36,7 @@ export default function Detail(props) {
           <h3>Instructions: </h3>
           {recipe.analyzedInstructions.length > 0 ? (
             <ul>
-              {recipe.createdDb ? (
+              {recipe.createDb ? (
                 <li>{recipe.analyzedInstructions}</li>
               ) : (
                 recipe.analyzedInstructions[0].steps.map((p) => (
@@ -48,7 +49,7 @@ export default function Detail(props) {
           )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
     </div>
   );

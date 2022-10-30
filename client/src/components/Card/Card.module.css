@@ -1,4 +1,4 @@
-/* .card_container {
+/* .cardsContainer {
   border: 2px solid lightblue;
   background-color: black;
   display: flex;
@@ -34,3 +34,51 @@
   height: 200px;
   box-sizing: border-box;
 } */
+
+.cardsContainer {
+  display: inline-block;
+  margin: 10px;
+  margin-bottom: 50px;
+  padding: 10px;
+  color: #000;
+  box-shadow: 0px 0px 20px 2px #402f26;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  transition: all 1s ease;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  width: 450px;
+  height: 400px;
+}
+
+.cardsContainer:hover {
+  cursor: pointer;
+  transform: translateY(-20px);
+  transition: all 0.5s;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card_diet {
+  font-size: 15px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: rgb(130, 180, 255);
+  text-shadow: 2px 1px 6px #0007;
+}
+
+.img_card {
+  width: 350px;
+  height: 250px;
+  border-radius: 25px;
+  margin: 15px 20px 10px 20px;
+}

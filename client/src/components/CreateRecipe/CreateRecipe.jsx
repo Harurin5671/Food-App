@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { postRecipe, getDiets } from "../../actions";
-import { useDispatch, useSelector } from 'react-redux';
-import style from './CreateRecipe.module.css';
-import img from '../../image/icons8-home-page-50.png';
+import { useDispatch, useSelector } from "react-redux";
+import style from "./CreateRecipe.module.css";
+import img from "../../image/icons8-home-page-50.png";
 
 function validate(input) {
   let errors = {};
@@ -17,8 +17,8 @@ function validate(input) {
     ? (errors.diets = "Choose at least one diet")
     : (errors.diets = "");
   if (!input.image.includes("https://") && !input.image.includes("http://")) {
-    if(input.image === ""){
-      errors.image = ""
+    if (input.image === "") {
+      errors.image = "";
     }
     errors.image = "This isn't a valid image address";
   } else {
@@ -27,18 +27,18 @@ function validate(input) {
   return errors;
 }
 
-
 export default function CreateRecipe() {
   const dispatch = useDispatch();
-  const diets = useSelector(state => state.diets);
-  const allRecipes = useSelector(state => state.allRecipes);
+  const diets = useSelector((state) => state.diets);
+  const allRecipes = useSelector((state) => state.allRecipes);
   const [input, setInput] = useState({
     title: "",
     summary: "",
     healthScore: 0,
     analyzedInstructions: "",
-    image: "https://st.depositphotos.com/1987177/3470/v/600/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg",
-    diets: []
+    image:
+      "https://st.depositphotos.com/1987177/3470/v/600/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg",
+    diets: [],
   });
   const [errors, setErrors] = useState({});
 
@@ -46,24 +46,30 @@ export default function CreateRecipe() {
     dispatch(getDiets());
   }, [dispatch]);
 
-  function handleChange(e){
+  function handleChange(e) {
     setInput({
       ...input,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-    setErrors(validate({
-      ...input,
-      [e.target.name]: e.target.value
-    }));
-    if(allRecipes.find(r => r.title.toLowerCase() === e.target.value.toLowerCase())){
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    if (
+      allRecipes.find(
+        (r) => r.title.toLowerCase() === e.target.value.toLowerCase()
+      )
+    ) {
       setErrors({
         ...input,
-        [e.target.name]: "Recipe was found"
+        [e.target.name]: "Recipe was found",
       });
-    };
-    console.log(input)
-  };
-  
+    }
+    console.log(input);
+  }
+
   function handleSelect(e) {
     setInput((input) => ({
       ...input,
@@ -77,8 +83,8 @@ export default function CreateRecipe() {
     );
   }
 
-  function handleSubmit(e){
-    if(input.title && input.summary && input.image && input.diets.length > 0){
+  function handleSubmit(e) {
+    if (input.title && input.summary && input.image && input.diets.length > 0) {
       e.preventDefault();
       dispatch(postRecipe(input));
       alert("Recipe succesfully Created!!");
@@ -91,11 +97,11 @@ export default function CreateRecipe() {
         image: "",
         diets: [],
       });
-    }else{
+    } else {
       e.preventDefault();
       alert("You must complete every field!!");
     }
-  };
+  }
 
   function handleDelete(e, d) {
     e.preventDefault();
@@ -111,7 +117,7 @@ export default function CreateRecipe() {
         <Link to="/home">
           <img className={style.img} src={img} alt="" />
         </Link>
-        <p>Home</p>
+        <p className={style.p_img}>Home</p>
         <h1 className={style.h1}>Create your own Recipe here:</h1>
       </div>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
@@ -192,4 +198,4 @@ export default function CreateRecipe() {
       </form>
     </div>
   );
-};
+}

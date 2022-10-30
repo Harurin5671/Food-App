@@ -1,4 +1,7 @@
-.container{
-  margin-top: 10px;
+.container {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
 }

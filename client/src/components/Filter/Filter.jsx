@@ -1,31 +1,36 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { filterCreated, orderByName, orderByScore, filterByDiet } from '../../actions';
-import style from './Filter.module.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  filterCreated,
+  orderByName,
+  orderByScore,
+  filterByDiet,
+} from "../../actions";
+import style from "./Filter.module.css";
 
-export default function Filter({setCurrentPage, setOrder}) {
+export default function Filter({ setCurrentPage, setOrder }) {
   const dispatch = useDispatch();
 
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-  };
+  }
 
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value);
-  };
+  }
 
   function handleSelectByScore(e) {
     e.preventDefault();
     dispatch(orderByScore(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value);
-  };
+  }
 
-  function handleSelectByDiet(e){
+  function handleSelectByDiet(e) {
     e.preventDefault();
     dispatch(filterByDiet(e.target.value));
     setCurrentPage(1);
@@ -34,7 +39,8 @@ export default function Filter({setCurrentPage, setOrder}) {
 
   return (
     <div className={style.container}>
-      <span>Filter by Type of diet</span>
+      <div className={style.diet}>
+        <span>Filter by Type of diet</span>
         <select onChange={(e) => handleSelectByDiet(e)}>
           <option value="all">All</option>
           <option value="vegan">Vegan</option>
@@ -49,24 +55,31 @@ export default function Filter({setCurrentPage, setOrder}) {
           <option value="fodmap friendly">Fodmap Friendly</option>
           {/* <option value="Vegetarian">Vegetarian</option> */}
         </select>
+      </div>
+      <div className={style.name}>
         <span>Order by Recipe Name</span>
         <select onChange={(e) => handleSort(e)}>
           <option value="all">All</option>
           <option value="a-z">A-Z</option>
           <option value="z-a">Z-A</option>
         </select>
+      </div>
+      <div className={style.score}>
         <span>Order by Score</span>
         <select onChange={(e) => handleSelectByScore(e)}>
           <option value="all">All</option>
           <option value="asc">Highest Score</option>
           <option value="desc">Lowest Score</option>
         </select>
+      </div>
+      <div className={style.created}>
         <span>Filter for Creation</span>
         <select onChange={(e) => handleFilterCreated(e)}>
           <option value="all">All</option>
           <option value="create">Create</option>
           <option value="api">Api</option>
         </select>
+      </div>
     </div>
   );
-};
+}
