@@ -50,8 +50,9 @@
   justify-content: center;
   text-align: center;
   box-sizing: border-box;
-  width: 450px;
-  height: 400px;
+  width: 480px;
+  height: 500px;
+  background-image: url("../../image/fondo-comida-saludable-dibujado-mano_23-2148149083.jpg");
 }
 
 .cardsContainer:hover {
@@ -61,7 +62,7 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
 }
 
@@ -72,13 +73,16 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  color: rgb(130, 180, 255);
-  text-shadow: 2px 1px 6px #0007;
+  color: #666;
+  text-shadow: 2px 1px 6px #0009;
+  font-size: 18px;
+  margin-top: 10px;
+  box-sizing: border-box;
 }
 
 .img_card {
   width: 350px;
   height: 250px;
   border-radius: 25px;
-  margin: 15px 20px 10px 20px;
+  margin: 10px;
 }

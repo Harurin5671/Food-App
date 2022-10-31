@@ -44,11 +44,6 @@ export default function Detail(props) {
           <p className={style.detail_summary}>
             {recipe.summary.replace(/<[^>]*>?/g, "")}
           </p>
-          <img
-            className={style.detail_img}
-            src={recipe.image}
-            alt="img not found"
-          />
           <h3>Instructions: </h3>
           {recipe.analyzedInstructions.length > 0 ? (
             <ul className={style.detail_list}>
@@ -63,6 +58,11 @@ export default function Detail(props) {
           ) : (
             <p className={style.detail_p}>This recipe has no instructions</p>
           )}
+          <img
+            className={style.detail_img}
+            src={recipe.image}
+            alt="img not found"
+          />
         </div>
       ) : (
         <Loader />

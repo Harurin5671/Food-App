@@ -27,16 +27,18 @@
 }
 
 .navContainer__navbar_searchbar_button {
-  text-align: center;
-  padding: 5px;
-  border-radius: 8px;
-  background: none;
-  color: #000;
-  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.navContainer__navbar_searchbar_button::placeholder {
+  color: #151515;
 }
 
 .navContainer__navbar_searchbar_button:hover {
   background: #0009;
+  color: #fff;
   outline: none;
 }
 

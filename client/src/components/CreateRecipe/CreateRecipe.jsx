@@ -24,6 +24,11 @@ function validate(input) {
   } else {
     errors.image = "";
   }
+  if (input.healthScore <= 0 || input.healthScore > 100) {
+    errors.healthScore = "Please select a number within the range of 1 to 100";
+  } else {
+    errors.healthScore = "";
+  }
   return errors;
 }
 
@@ -87,7 +92,12 @@ export default function CreateRecipe() {
   }
 
   function handleSubmit(e) {
-    if (input.title && input.summary && input.image && input.diets.length > 0) {
+    if (
+      input.title &&
+      input.summary &&
+      input.image &&
+      input.diets.length >= 0
+    ) {
       e.preventDefault();
       dispatch(postRecipe(input));
       alert("Recipe succesfully Created!!");
@@ -170,6 +180,9 @@ export default function CreateRecipe() {
             name="healthScore"
             value={input.healthScore}
           />
+          {errors.healthScore && (
+            <p className={style.alert}>{errors.healthScore}</p>
+          )}
         </div>
         <div>
           <label className={style.form_label}>Instructions:</label>

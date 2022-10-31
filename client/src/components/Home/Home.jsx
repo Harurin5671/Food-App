@@ -70,25 +70,3 @@ export default function Home() {
     </div>
   );
 }
-
-//  <nav className={style.navContainer}>
-//         <h1 className={style.navContainer__h1}>THE WIKIPEDIA OF RECIPES...</h1>
-//         <button
-//           className={style.navContainer__btnShow}
-//           onClick={(e) => handleClick(e)}
-//         >
-//           Show all Recipes
-//         </button>
-//         <NavBar />
-//       </nav>
-//       <Filter setCurrentPage={setCurrentPage} setOrder={setOrder} />
-//       <div className={style.pageContainer}>
-//         <Pagination
-//           recipesPerPage={recipesPerPage}
-//           allRecipes={allRecipes.length}
-//           pagination={pagination}
-//         />
-//       </div>
-//       <div className={style.cardsContainer}>
-//         <Cards data={currentRecipes} />
-//       </div>

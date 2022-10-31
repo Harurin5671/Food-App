@@ -2,9 +2,15 @@
   --effect: hover 1s linear infinite;
 }
 
+.home {
+  background-image: url("../../image/pngtree-restaurant-food-poster-image_174124.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navContainer {
   box-sizing: border-box;
-  border-bottom: 2px solid rgb(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgb(150, 150, 150, 0.9);
   text-align: center;
   height: 100px;
   /* background: #d25; */
@@ -22,8 +28,10 @@
 }
 
 .navContainer__h1 {
-  color: #000;
+  color: #fff;
   text-shadow: 3px 3px 3px rgba(118, 120, 121, 0.5);
+  font-size: 30px;
+  font-weight: 700;
 }
 .pageContainer {
   display: flex;
