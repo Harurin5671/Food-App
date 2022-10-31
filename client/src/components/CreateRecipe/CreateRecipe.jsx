@@ -68,6 +68,7 @@ export default function CreateRecipe() {
       });
     }
     console.log(input);
+    console.log(errors);
   }
 
   function handleSelect(e) {
@@ -75,12 +76,14 @@ export default function CreateRecipe() {
       ...input,
       diets: [...input.diets, e.target.value],
     }));
+    console.log(input);
     setErrors(
       validate({
         ...input,
         diets: [...input.diets, e.target.value],
       })
     );
+    console.log(errors);
   }
 
   function handleSubmit(e) {
@@ -111,53 +114,67 @@ export default function CreateRecipe() {
     });
   }
 
+  let key = Object.values(errors);
+  function validateBtn(a) {
+    let filtrado = a.filter((e) => e !== "");
+    if (filtrado.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.inicio}>
-        <Link to="/home">
-          <img className={style.img} src={img} alt="" />
-        </Link>
-        <p className={style.p_img}>Home</p>
-        <h1 className={style.h1}>Create your own Recipe here:</h1>
+        <div className={style.inicio_home}>
+          <Link to="/home">
+            <img className={style.img} src={img} alt="" />
+          </Link>
+          <p className={style.p_img}>Home</p>
+        </div>
+        <h1 className={style.h1}>
+          {"Create your own Recipe here:".toUpperCase()}
+        </h1>
       </div>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label>Recipe Name:</label>
+          <label className={style.form_label}>Recipe Name:</label>
           <input
+            className={style.form_input}
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Complete here..."
             name="title"
             value={input.title}
           />
-          {errors.title && <p /*className={style.alert}*/>{errors.title}</p>}
+          {errors.title && <p className={style.alert}>{errors.title}</p>}
         </div>
         <div>
-          <label>Summary:</label>
+          <label className={style.form_label}>Summary:</label>
           <input
+            className={style.form_input}
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Complete here..."
             name="summary"
             value={input.summary}
           />
-          {errors.summary && (
-            <p /*className={style.alert}*/>{errors.summary}</p>
-          )}
+          {errors.summary && <p className={style.alert}>{errors.summary}</p>}
         </div>
         <div>
-          <label>Health Level:</label>
+          <label className={style.form_label}>Health Level:</label>
           <input
             onChange={(e) => handleChange(e)}
-            className="inputCreate"
+            className={style.form_input}
             type="number"
             name="healthScore"
             value={input.healthScore}
           />
         </div>
         <div>
-          <label>Instructions:</label>
+          <label className={style.form_label}>Instructions:</label>
           <textarea
+            className={style.form_input}
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Complete here..."
@@ -166,17 +183,18 @@ export default function CreateRecipe() {
           />
         </div>
         <div>
-          <label>Image:</label>
+          <label className={style.form_label}>Image:</label>
           <input
+            className={style.form_input}
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Example: https://..."
             name="image"
             value={input.image}
           />
-          {errors.image && <p /*className={style.alert}*/>{errors.image}</p>}
+          {errors.image && <p className={style.alert}>{errors.image}</p>}
         </div>
-        <div>
+        <div className={style.select_diet}>
           <span>Type of Diet:</span>
           <select onChange={(e) => handleSelect(e)}>
             {diets &&
@@ -186,14 +204,24 @@ export default function CreateRecipe() {
                 </option>
               ))}
           </select>
+          {validateBtn(key) ? (
+            <p className={style.adv}>Please complete the form</p>
+          ) : (
+            <button className={style.correct} type="submit">
+              Create a Recipe
+            </button>
+          )}
           {input.diets.map((d, i) => (
-            <ul key={i}>
-              <li>{d}</li>
-              <button onClick={(e) => handleDelete(e, d)}>x</button>
-            </ul>
+            <div key={i}>
+              <h5 className={style.types}>{d}</h5>
+              <button
+                className={style.btnx}
+                onClick={(e) => handleDelete(e, d)}
+              >
+                x
+              </button>
+            </div>
           ))}
-          {errors.diets && <p>{errors.diets}</p>}
-          <button type="submit">Create a Recipe</button>
         </div>
       </form>
     </div>

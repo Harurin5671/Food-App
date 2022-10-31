@@ -7,17 +7,17 @@ import {
   POST_RECIPE,
   ORDER_BY_SCORE,
   GET_DETAIL,
-  FILTER_BY_DIET
-} from '../actions/index.js';
+  FILTER_BY_DIET,
+} from "../actions/index.js";
 
 const initialState = {
   recipes: [],
   allRecipes: [],
   diets: [],
-  detail: []
+  detail: [],
 };
 
-export default function rootReducer(state=initialState, action){
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_RECIPES:
       return {
@@ -37,43 +37,43 @@ export default function rootReducer(state=initialState, action){
       };
     case ORDER_BY_NAME:
       let sortedRecipes =
-      action.payload === "a-z"
-        ? state.recipes.sort((a, b) => {
-            if (a.title.toLowerCase() > b.title.toLowerCase()) {
-              return 1;
-            }
-            if (b.title.toLowerCase() > a.title.toLowerCase()) {
-              return -1;
-            }
-            return 0;
-          })
-        : state.recipes.sort((a, b) => {
-            if (a.title.toLowerCase() > b.title.toLowerCase()) {
-              return -1;
-            }
-            if (b.title.toLowerCase() > a.title.toLowerCase()) {
-              return 1;
-            }
-            return 0;
-          });
+        action.payload === "a-z"
+          ? state.recipes.sort((a, b) => {
+              if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                return 1;
+              }
+              if (b.title.toLowerCase() > a.title.toLowerCase()) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                return -1;
+              }
+              if (b.title.toLowerCase() > a.title.toLowerCase()) {
+                return 1;
+              }
+              return 0;
+            });
       return {
         ...state,
         recipes: action.payload === "all" ? state.allRecipes : sortedRecipes,
-      }
+      };
     case GET_RECIPE_NAME:
       return {
         ...state,
-        recipes: action.payload
-      }
+        recipes: action.payload,
+      };
     case GET_DIETS:
       return {
         ...state,
-        diets: action.payload
-      }
+        diets: action.payload,
+      };
     case POST_RECIPE:
-      return{
-        ...state
-      }
+      return {
+        ...state,
+      };
     case ORDER_BY_SCORE:
       let orderRecipes =
         action.payload === "desc"
@@ -81,13 +81,13 @@ export default function rootReducer(state=initialState, action){
           : state.recipes.sort((a, b) => b.healthScore - a.healthScore);
       return {
         ...state,
-        recipes: action.payload === "all" ? state.recipes : orderRecipes
-      }
+        recipes: action.payload === "all" ? state.recipes : orderRecipes,
+      };
     case GET_DETAIL:
       return {
         ...state,
         detail: action.payload,
-      }
+      };
     case FILTER_BY_DIET:
       let totalRecipes = state.allRecipes;
       const recipesApi = totalRecipes.filter((r) => !r.createdDb);
@@ -105,12 +105,12 @@ export default function rootReducer(state=initialState, action){
       );
       const vegetarian = vegetarianDb.concat(vegetarianApi);
       const ternario = action.payload === "vegetarian" ? vegetarian : filtered;
-  
+
       return {
         ...state,
-        recipes: action.payload === "all" ? totalRecipes : ternario
+        recipes: action.payload === "all" ? totalRecipes : ternario,
       };
     default:
       return { ...state };
-  };
-};
+  }
+}

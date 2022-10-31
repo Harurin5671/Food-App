@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import style from "./Detail.module.css";
+import img from "../../image/icons8-home-page-50.png";
 
 export default function Detail(props) {
   let { id } = useParams();
@@ -17,25 +19,39 @@ export default function Detail(props) {
   const recipe = details[0];
   console.log(details);
   return (
-    <div>
+    <div className={style.container}>
       {details.length > 0 ? (
-        <div>
-          <Link to="/home">
-            <button>Back to Home</button>
-          </Link>
-          <h1>Recipe Name: {recipe.title}</h1>
+        <div className={style.detail_container}>
+          <div className={style.detail_home}>
+            <Link to="/home">
+              <img
+                className={style.detail_home_img}
+                src={img}
+                alt="img not found"
+              />
+            </Link>
+            <p className={style.detail_home_p}>Home</p>
+          </div>
+          <h1 className={style.detail_title}>{recipe.title}</h1>
           <h3>Health Score: {recipe.healthScore}</h3>
-          <h3>
-            Type of Diet:{" "}
+          <h3 className={style.diet_score}>Type of Diet:</h3>
+          <p className={style.detail_p_diets}>
             {recipe.createDb
-              ? recipe.diets.map((d) => d.name).join(", ")
-              : recipe.diets.map((d) => d).join(", ")}
-          </h3>
-          <h3>Summary: {recipe.summary.replace(/<[^>]*>?/g, "")}</h3>
-          <img src={recipe.image} alt="img not found" />
+              ? recipe.diets.map((d) => d.name.toUpperCase()).join(", ")
+              : recipe.diets.map((d) => d.toUpperCase()).join(", ")}
+          </p>
+          <h3>Summary:</h3>
+          <p className={style.detail_summary}>
+            {recipe.summary.replace(/<[^>]*>?/g, "")}
+          </p>
+          <img
+            className={style.detail_img}
+            src={recipe.image}
+            alt="img not found"
+          />
           <h3>Instructions: </h3>
           {recipe.analyzedInstructions.length > 0 ? (
-            <ul>
+            <ul className={style.detail_list}>
               {recipe.createDb ? (
                 <li>{recipe.analyzedInstructions}</li>
               ) : (
@@ -45,7 +61,7 @@ export default function Detail(props) {
               )}
             </ul>
           ) : (
-            <p></p>
+            <p className={style.detail_p}>This recipe has no instructions</p>
           )}
         </div>
       ) : (
