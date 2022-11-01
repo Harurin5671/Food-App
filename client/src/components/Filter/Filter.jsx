@@ -14,6 +14,7 @@ export default function Filter({ setCurrentPage, setOrder }) {
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
+    // setCurrentPage(1);
   }
 
   function handleSort(e) {
