@@ -29,7 +29,8 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getRecipes());
-  }, [dispatch]);
+    // eslint-disable-next-line
+  }, []);
 
   function handleClick(e) {
     e.preventDefault();

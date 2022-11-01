@@ -1,26 +1,32 @@
 import React from "react";
-import { getDetail } from "../../actions";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import style from "./Detail.module.css";
 import img from "../../image/icons8-home-page-50.png";
+import axios from "axios";
 
 export default function Detail(props) {
+  const [detail, setDetail] = useState(null);
+
   let { id } = useParams();
-  const dispatch = useDispatch();
+  console.log(id);
+
   useEffect(() => {
-    dispatch(getDetail(id));
+    axios.get(`/recipes/${id}`).then((response) => {
+      setDetail(response.data);
+    });
+    return () => {
+      setDetail(null);
+    };
     // eslint-disable-next-line
   }, []);
-  const details = useSelector((state) => state.detail);
-  const recipe = details[0];
-  console.log(details);
+  console.log(detail);
+
   return (
     <div className={style.container}>
-      {details.length > 0 ? (
+      {detail ? (
         <div className={style.detail_container}>
           <div className={style.detail_home}>
             <Link to="/home">
@@ -32,25 +38,25 @@ export default function Detail(props) {
             </Link>
             <p className={style.detail_home_p}>Home</p>
           </div>
-          <h1 className={style.detail_title}>{recipe.title}</h1>
-          <h3>Health Score: {recipe.healthScore}</h3>
+          <h1 className={style.detail_title}>{detail[0].title}</h1>
+          <h3>Health Score: {detail[0].healthScore}</h3>
           <h3 className={style.diet_score}>Type of Diet:</h3>
           <p className={style.detail_p_diets}>
-            {recipe.createDb
-              ? recipe.diets.map((d) => d.name.toUpperCase()).join(", ")
-              : recipe.diets.map((d) => d.toUpperCase()).join(", ")}
+            {detail[0].createDb
+              ? detail[0].diets.map((d) => d.name.toUpperCase()).join(", ")
+              : detail[0].diets.map((d) => d.toUpperCase()).join(", ")}
           </p>
           <h3>Summary:</h3>
           <p className={style.detail_summary}>
-            {recipe.summary.replace(/<[^>]*>?/g, "")}
+            {detail[0].summary.replace(/<[^>]*>?/g, "")}
           </p>
           <h3>Instructions: </h3>
-          {recipe.analyzedInstructions.length > 0 ? (
+          {detail[0].analyzedInstructions.length > 0 ? (
             <ul className={style.detail_list}>
-              {recipe.createDb ? (
-                <li>{recipe.analyzedInstructions}</li>
+              {detail[0].createDb ? (
+                <li>{detail[0].analyzedInstructions}</li>
               ) : (
-                recipe.analyzedInstructions[0].steps.map((p) => (
+                detail[0].analyzedInstructions[0].steps.map((p) => (
                   <li key={p.number}>{p.step}</li>
                 ))
               )}
@@ -60,7 +66,7 @@ export default function Detail(props) {
           )}
           <img
             className={style.detail_img}
-            src={recipe.image}
+            src={detail[0].image}
             alt="img not found"
           />
         </div>

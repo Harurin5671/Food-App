@@ -4,7 +4,6 @@ import style from "./Cards.module.css";
 import { Link } from "react-router-dom";
 
 export default function Cards({ data }) {
-  console.log(data);
   return (
     <div className={style.cards__div}>
       {data &&
