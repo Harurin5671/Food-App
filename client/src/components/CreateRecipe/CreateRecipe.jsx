@@ -72,8 +72,6 @@ export default function CreateRecipe() {
         [e.target.name]: "Recipe was found",
       });
     }
-    console.log(input);
-    console.log(errors);
   }
 
   function handleSelect(e) {

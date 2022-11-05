@@ -11,7 +11,6 @@ export default function Detail(props) {
   const [detail, setDetail] = useState(null);
 
   let { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     axios.get(`/recipes/${id}`).then((response) => {

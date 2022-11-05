@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getRecipeName } from "../../actions";
 import style from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({setCurrentPage}) {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   function handleInputChange(e) {
@@ -11,9 +11,10 @@ export default function SearchBar() {
     setInput(e.target.value);
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(getRecipeName(input));
+    await dispatch(getRecipeName(input));
+    input.length && setCurrentPage(1)
     setInput("");
   }
 

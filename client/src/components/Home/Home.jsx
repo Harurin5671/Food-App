@@ -51,7 +51,7 @@ export default function Home() {
             >
               Show all Recipes
             </button>
-            <NavBar />
+            <NavBar setCurrentPage={setCurrentPage}/>
           </nav>
           <Filter setCurrentPage={setCurrentPage} setOrder={setOrder} />
           <div className={style.pageContainer}>
