@@ -54,7 +54,6 @@ export default function Filter({ setCurrentPage, setOrder }) {
           <option value="pescatarian">Pescatarian 30</option>
           <option value="ketogenic">Ketogenic</option>
           <option value="fodmap friendly">Fodmap Friendly</option>
-          {/* <option value="Vegetarian">Vegetarian</option> */}
         </select>
       </div>
       <div className={style.name}>
